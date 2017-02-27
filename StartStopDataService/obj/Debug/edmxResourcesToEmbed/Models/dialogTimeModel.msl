@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DialogTimeModelStoreContainer" CdmEntityContainer="dialogTimeEntities">
+    <EntitySetMapping Name="ProjektgruppeLohnkategorieAnsaetze">
+      <EntityTypeMapping TypeName="DialogTimeModel.ProjektgruppeLohnkategorieAnsatz">
+        <MappingFragment StoreEntitySet="Ansaetze">
+          <ScalarProperty Name="ProjektgruppeNummer" ColumnName="ProjektgruppeNummer" />
+          <ScalarProperty Name="LohnkategorieKuerzel" ColumnName="LohnkategorieKuerzel" />
+          <ScalarProperty Name="Ansatz" ColumnName="Ansatz" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lohnkategorien">
+      <EntityTypeMapping TypeName="DialogTimeModel.Lohnkategorie">
+        <MappingFragment StoreEntitySet="Lohnkategorien">
+          <ScalarProperty Name="Kuerzel" ColumnName="Kuerzel" />
+          <ScalarProperty Name="Beschreibung" ColumnName="Beschreibung" />
+          <ScalarProperty Name="Standardansatz" ColumnName="Standardansatz" />
+          <ScalarProperty Name="Lohnart" ColumnName="Lohnart" />
+          <ScalarProperty Name="LohnKatKontierung" ColumnName="LohnKatKontierung" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MandantProjektZuordnungen">
+      <EntityTypeMapping TypeName="DialogTimeModel.MandantProjektZuordnung">
+        <MappingFragment StoreEntitySet="MandantProjektZuordnung">
+          <ScalarProperty Name="MandantId" ColumnName="MandantId" />
+          <ScalarProperty Name="ProjektId" ColumnName="ProjektId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Personal">
+      <EntityTypeMapping TypeName="DialogTimeModel.Mitarbeiter">
+        <MappingFragment StoreEntitySet="Personal">
+          <ScalarProperty Name="IRKore" ColumnName="IRKore" />
+          <ScalarProperty Name="IRKonto" ColumnName="IRKonto" />
+          <ScalarProperty Name="PersId" ColumnName="PersId" />
+          <ScalarProperty Name="Passwort" ColumnName="Passwort" />
+          <ScalarProperty Name="AHV" ColumnName="AHV" />
+          <ScalarProperty Name="Vorname" ColumnName="Vorname" />
+          <ScalarProperty Name="Nachname" ColumnName="Nachname" />
+          <ScalarProperty Name="Titel" ColumnName="Titel" />
+          <ScalarProperty Name="EmailName" ColumnName="EmailName" />
+          <ScalarProperty Name="Strasse" ColumnName="Strasse" />
+          <ScalarProperty Name="Ort" ColumnName="Ort" />
+          <ScalarProperty Name="Postleitzahl" ColumnName="Postleitzahl" />
+          <ScalarProperty Name="Land" ColumnName="Land" />
+          <ScalarProperty Name="TelefonPrivat" ColumnName="TelefonPrivat" />
+          <ScalarProperty Name="TelefonBeruflich" ColumnName="TelefonBeruflich" />
+          <ScalarProperty Name="Natel" ColumnName="Natel" />
+          <ScalarProperty Name="Geburtsdatum" ColumnName="Geburtsdatum" />
+          <ScalarProperty Name="EhepartnerName" ColumnName="EhepartnerName" />
+          <ScalarProperty Name="NotfallkontaktPerson" ColumnName="NotfallkontaktPerson" />
+          <ScalarProperty Name="NotfallkontaktTelefon" ColumnName="NotfallkontaktTelefon" />
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
+          <ScalarProperty Name="Eintritt" ColumnName="Eintritt" />
+          <ScalarProperty Name="Austritt" ColumnName="Austritt" />
+          <ScalarProperty Name="AnsatzNK" ColumnName="AnsatzNK" />
+          <ScalarProperty Name="Ferien" ColumnName="Ferien" />
+          <ScalarProperty Name="StdLohnAnsatz" ColumnName="StdLohnAnsatz" />
+          <ScalarProperty Name="LohnkategorieKuerzel" ColumnName="LohnkategorieKuerzel" />
+          <ScalarProperty Name="Rechte" ColumnName="Rechte" />
+          <ScalarProperty Name="ArbeitProzent" ColumnName="ArbeitProzent" />
+          <ScalarProperty Name="KalenderId" ColumnName="KalenderId" />
+          <ScalarProperty Name="StartNormalarbeitszeit" ColumnName="StartNormalarbeitszeit" />
+          <ScalarProperty Name="Intervall" ColumnName="Intervall" />
+          <ScalarProperty Name="Abteilung" ColumnName="Abteilung" />
+          <ScalarProperty Name="Funktion" ColumnName="Funktion" />
+          <ScalarProperty Name="Gleitzeitberechtigt" ColumnName="Gleitzeitberechtigt" />
+          <ScalarProperty Name="UseTagessollzeiten" ColumnName="UseTagessollzeiten" />
+          <ScalarProperty Name="MoSollzeit" ColumnName="MoSollzeit" />
+          <ScalarProperty Name="DiSollzeit" ColumnName="DiSollzeit" />
+          <ScalarProperty Name="MiSollzeit" ColumnName="MiSollzeit" />
+          <ScalarProperty Name="DoSollzeit" ColumnName="DoSollzeit" />
+          <ScalarProperty Name="FrSollzeit" ColumnName="FrSollzeit" />
+          <ScalarProperty Name="SaSollzeit" ColumnName="SaSollzeit" />
+          <ScalarProperty Name="SoSollzeit" ColumnName="SoSollzeit" />
+          <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+          <ScalarProperty Name="Angemeldet" ColumnName="Angemeldet" />
+          <ScalarProperty Name="ExchangeID" ColumnName="ExchangeID" />
+          <ScalarProperty Name="OutlookKontakte" ColumnName="OutlookKontakte" />
+          <ScalarProperty Name="OutlookKalender" ColumnName="OutlookKalender" />
+          <ScalarProperty Name="Lehrlingsbetreuer" ColumnName="Lehrlingsbetreuer" />
+          <ScalarProperty Name="Kontogruppe" ColumnName="Kontogruppe" />
+          <ScalarProperty Name="Konto" ColumnName="Konto" />
+          <ScalarProperty Name="Kore" ColumnName="Kore" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Projekte">
+      <EntityTypeMapping TypeName="DialogTimeModel.Projekt">
+        <MappingFragment StoreEntitySet="Projekte">
+          <ScalarProperty Name="Kostenstelle" ColumnName="Kostenstelle" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ExternId" ColumnName="ExternId" />
+          <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
+          <ScalarProperty Name="AuftragNummer" ColumnName="AuftragNummer" />
+          <ScalarProperty Name="BudgetMaterial" ColumnName="BudgetMaterial" />
+          <ScalarProperty Name="StartDatum" ColumnName="StartDatum" />
+          <ScalarProperty Name="EndDatum" ColumnName="EndDatum" />
+          <ScalarProperty Name="ProjektgruppeNummer" ColumnName="ProjektgruppeNummer" />
+          <ScalarProperty Name="Aktiv" ColumnName="Aktiv" />
+          <ScalarProperty Name="BudgetLeistungenFr" ColumnName="BudgetLeistungenFr" />
+          <ScalarProperty Name="BudgetLeistungenStd" ColumnName="BudgetLeistungenStd" />
+          <ScalarProperty Name="BudgetSpesen" ColumnName="BudgetSpesen" />
+          <ScalarProperty Name="SpesenFaktor" ColumnName="SpesenFaktor" />
+          <ScalarProperty Name="MaterialFaktor" ColumnName="MaterialFaktor" />
+          <ScalarProperty Name="Fortschritt" ColumnName="Fortschritt" />
+          <ScalarProperty Name="StundeAnsatz" ColumnName="StundeAnsatz" />
+          <ScalarProperty Name="ProjektleiterId" ColumnName="ProjektleiterId" />
+          <ScalarProperty Name="FirmenName" ColumnName="FirmenName" />
+          <ScalarProperty Name="FirmaZusatz" ColumnName="FirmaZusatz" />
+          <ScalarProperty Name="Strasse" ColumnName="Strasse" />
+          <ScalarProperty Name="HausNr" ColumnName="HausNr" />
+          <ScalarProperty Name="Postfach" ColumnName="Postfach" />
+          <ScalarProperty Name="PLZ" ColumnName="PLZ" />
+          <ScalarProperty Name="Ort" ColumnName="Ort" />
+          <ScalarProperty Name="Kontakt" ColumnName="Kontakt" />
+          <ScalarProperty Name="Anrede" ColumnName="Anrede" />
+          <ScalarProperty Name="Frist" ColumnName="Frist" />
+          <ScalarProperty Name="Vorname" ColumnName="Vorname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Rechtsmittel" ColumnName="Rechtsmittel" />
+          <ScalarProperty Name="Belastung" ColumnName="Belastung" />
+          <ScalarProperty Name="Entlastung" ColumnName="Entlastung" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjektLohnkategorieZuordnungen">
+      <EntityTypeMapping TypeName="DialogTimeModel.ProjektLohnkategorieZuordnung">
+        <MappingFragment StoreEntitySet="ProjektLohnkategorieZuordnung">
+          <ScalarProperty Name="Aktiv" ColumnName="Aktiv" />
+          <ScalarProperty Name="ProjektId" ColumnName="ProjektId" />
+          <ScalarProperty Name="Kuerzel" ColumnName="Kuerzel" />
+          <ScalarProperty Name="Ansatz" ColumnName="Ansatz" />
+          <ScalarProperty Name="ProjektLohnKatKontierung" ColumnName="ProjektLohnKatKontierung" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RapportEintraege">
+      <EntityTypeMapping TypeName="DialogTimeModel.RapportEintrag">
+        <MappingFragment StoreEntitySet="RapportEintraege">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Datum" ColumnName="Datum" />
+          <ScalarProperty Name="MandantId" ColumnName="MandantId" />
+          <ScalarProperty Name="ProjektId" ColumnName="ProjektId" />
+          <ScalarProperty Name="PersId" ColumnName="PersId" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="LohnkategorieKuerzel" ColumnName="LohnkategorieKuerzel" />
+          <ScalarProperty Name="TarifkategorieId" ColumnName="TarifkategorieId" />
+          <ScalarProperty Name="Aufwand" ColumnName="Aufwand" />
+          <ScalarProperty Name="AnsatzIntern" ColumnName="AnsatzIntern" />
+          <ScalarProperty Name="AnsatzExtern" ColumnName="AnsatzExtern" />
+          <ScalarProperty Name="Zuschlag" ColumnName="Zuschlag" />
+          <ScalarProperty Name="Verrechnet" ColumnName="Verrechnet" />
+          <ScalarProperty Name="ArbeitsRapportNr" ColumnName="ArbeitsRapportNr" />
+          <ScalarProperty Name="TimeIntervall" ColumnName="TimeIntervall" />
+          <ScalarProperty Name="ErfName" ColumnName="ErfName" />
+          <ScalarProperty Name="ErfDatum" ColumnName="ErfDatum" />
+          <ScalarProperty Name="MutName" ColumnName="MutName" />
+          <ScalarProperty Name="MutDatum" ColumnName="MutDatum" />
+          <ScalarProperty Name="LohnKatKontierung" ColumnName="LohnKatKontierung" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StartStops">
+      <EntityTypeMapping TypeName="DialogTimeModel.StartStop">
+        <MappingFragment StoreEntitySet="StartStop">
+          <ScalarProperty Name="Datum" ColumnName="Datum" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PersId" ColumnName="PersId" />
+          <ScalarProperty Name="ProjektId" ColumnName="ProjektId" />
+          <ScalarProperty Name="LohnkategorieKuerzel" ColumnName="LohnkategorieKuerzel" />
+          <ScalarProperty Name="TarifkategorieId" ColumnName="TarifkategorieId" />
+          <ScalarProperty Name="TimeIntervall" ColumnName="TimeIntervall" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tarifkategorien">
+      <EntityTypeMapping TypeName="DialogTimeModel.Tarifkategorie">
+        <MappingFragment StoreEntitySet="Tarifkategorien">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="MitarbeiterProjektZuordnung" TypeName="DialogTimeModel.MitarbeiterProjektZuordnung" StoreEntitySet="MitarbeiterProjektZuordnung">
+      <EndProperty Name="Personal">
+        <ScalarProperty Name="PersId" ColumnName="PersId" />
+      </EndProperty>
+      <EndProperty Name="Projekte">
+        <ScalarProperty Name="Id" ColumnName="ProjektId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="Projektgruppen">
+      <EntityTypeMapping TypeName="DialogTimeModel.Projektgruppe">
+        <MappingFragment StoreEntitySet="Projektgruppen">
+          <ScalarProperty Name="Beschreibung" ColumnName="Beschreibung" />
+          <ScalarProperty Name="Nummer" ColumnName="Nummer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

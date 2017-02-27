@@ -1,0 +1,6 @@
+C:\Data\Education\Ionic\StartStopApp\TestFormatBumber\bin\Release\TestFormatBumber.exe.config
+C:\Data\Education\Ionic\StartStopApp\TestFormatBumber\bin\Release\TestFormatBumber.exe
+C:\Data\Education\Ionic\StartStopApp\TestFormatBumber\bin\Release\TestFormatBumber.pdb
+C:\Data\Education\Ionic\StartStopApp\TestFormatBumber\obj\Release\TestFormatBumber.csprojResolveAssemblyReference.cache
+C:\Data\Education\Ionic\StartStopApp\TestFormatBumber\obj\Release\TestFormatBumber.exe
+C:\Data\Education\Ionic\StartStopApp\TestFormatBumber\obj\Release\TestFormatBumber.pdb

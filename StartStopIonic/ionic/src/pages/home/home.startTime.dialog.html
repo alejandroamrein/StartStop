@@ -1,0 +1,25 @@
+﻿<ion-header>
+    <ion-navbar>
+        <ion-title>Start-Erweitert</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding class="sample-modal-page">
+    <ion-list>
+        <ion-item>
+            <ion-label>Date</ion-label>
+            <ion-datetime displayFormat="DD.MM.YYYY HH:mm" [(ngModel)]="datum"></ion-datetime>
+        </ion-item>
+    </ion-list>
+    <div>
+        <div class="row">
+            <div class="col" style="text-align:center">
+                <button ion-button medium color="secondary" (click)="save()">
+                    Bestätigen
+                </button>
+                <button ion-button medium color="secondary" (click)="dismiss()">
+                    Abbrechen
+                </button>
+            </div>
+        </div>
+    </div>
+</ion-content>

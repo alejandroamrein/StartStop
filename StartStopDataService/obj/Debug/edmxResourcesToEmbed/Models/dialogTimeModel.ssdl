@@ -1,0 +1,497 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DialogTimeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Ansaetze">
+    <Key>
+      <PropertyRef Name="ProjektgruppeNummer" />
+      <PropertyRef Name="LohnkategorieKuerzel" />
+    </Key>
+    <Property Name="ProjektgruppeNummer" Type="smallint" Nullable="false" />
+    <Property Name="LohnkategorieKuerzel" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Ansatz" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Lohnkategorien">
+    <Key>
+      <PropertyRef Name="Kuerzel" />
+    </Key>
+    <Property Name="Kuerzel" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Beschreibung" Type="nvarchar" MaxLength="255" />
+    <Property Name="Standardansatz" Type="money" Nullable="false" />
+    <Property Name="Lohnart" Type="int" Nullable="false" />
+    <Property Name="LohnKatKontierung" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="MandantProjektZuordnung">
+    <Key>
+      <PropertyRef Name="MandantId" />
+      <PropertyRef Name="ProjektId" />
+    </Key>
+    <Property Name="MandantId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProjektId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MitarbeiterProjektZuordnung">
+    <Key>
+      <PropertyRef Name="ProjektId" />
+      <PropertyRef Name="PersId" />
+    </Key>
+    <Property Name="ProjektId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PersId" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Personal">
+    <Key>
+      <PropertyRef Name="PersId" />
+    </Key>
+    <Property Name="PersId" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Passwort" Type="nvarchar" MaxLength="50" />
+    <Property Name="AHV" Type="nvarchar" MaxLength="30" />
+    <Property Name="Vorname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nachname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Titel" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmailName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Strasse" Type="nvarchar" MaxLength="255" />
+    <Property Name="Ort" Type="nvarchar" MaxLength="50" />
+    <Property Name="Postleitzahl" Type="nvarchar" MaxLength="20" />
+    <Property Name="Land" Type="nvarchar" MaxLength="50" />
+    <Property Name="TelefonPrivat" Type="nvarchar" MaxLength="30" />
+    <Property Name="TelefonBeruflich" Type="nvarchar" MaxLength="30" />
+    <Property Name="Natel" Type="nvarchar" MaxLength="50" />
+    <Property Name="Geburtsdatum" Type="datetime" />
+    <Property Name="EhepartnerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="NotfallkontaktPerson" Type="nvarchar" MaxLength="50" />
+    <Property Name="NotfallkontaktTelefon" Type="nvarchar" MaxLength="30" />
+    <Property Name="Foto" Type="image" />
+    <Property Name="Eintritt" Type="datetime" />
+    <Property Name="Austritt" Type="datetime" />
+    <Property Name="AnsatzNK" Type="money" />
+    <Property Name="Ferien" Type="float" />
+    <Property Name="StdLohnAnsatz" Type="money" />
+    <Property Name="LohnkategorieKuerzel" Type="nvarchar" MaxLength="50" />
+    <Property Name="Rechte" Type="nvarchar" MaxLength="255" />
+    <Property Name="ArbeitProzent" Type="float" Nullable="false" />
+    <Property Name="KalenderId" Type="int" Nullable="false" />
+    <Property Name="StartNormalarbeitszeit" Type="float" />
+    <Property Name="Intervall" Type="int" />
+    <Property Name="Abteilung" Type="nvarchar" MaxLength="100" />
+    <Property Name="Funktion" Type="nvarchar" MaxLength="100" />
+    <Property Name="Gleitzeitberechtigt" Type="bit" />
+    <Property Name="UseTagessollzeiten" Type="bit" />
+    <Property Name="MoSollzeit" Type="int" />
+    <Property Name="DiSollzeit" Type="int" />
+    <Property Name="MiSollzeit" Type="int" />
+    <Property Name="DoSollzeit" Type="int" />
+    <Property Name="FrSollzeit" Type="int" />
+    <Property Name="SaSollzeit" Type="int" />
+    <Property Name="SoSollzeit" Type="int" />
+    <Property Name="LastLogin" Type="datetime" />
+    <Property Name="Angemeldet" Type="bit" />
+    <Property Name="ExchangeID" Type="nvarchar" MaxLength="50" />
+    <Property Name="OutlookKontakte" Type="bit" />
+    <Property Name="OutlookKalender" Type="bit" />
+    <Property Name="Lehrlingsbetreuer" Type="bit" />
+    <Property Name="Kontogruppe" Type="nvarchar" MaxLength="50" />
+    <Property Name="Konto" Type="nvarchar" MaxLength="50" />
+    <Property Name="Kore" Type="nvarchar" MaxLength="10" />
+    <Property Name="IRKonto" Type="nvarchar" MaxLength="50" />
+    <Property Name="IRKore" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Projekte">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ExternId" Type="nvarchar" MaxLength="50" />
+    <Property Name="Bezeichnung" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="AuftragNummer" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="BudgetMaterial" Type="money" />
+    <Property Name="StartDatum" Type="datetime" />
+    <Property Name="EndDatum" Type="datetime" />
+    <Property Name="ProjektgruppeNummer" Type="smallint" />
+    <Property Name="Aktiv" Type="bit" />
+    <Property Name="BudgetLeistungenFr" Type="money" />
+    <Property Name="BudgetLeistungenStd" Type="float" />
+    <Property Name="BudgetSpesen" Type="money" />
+    <Property Name="SpesenFaktor" Type="float" />
+    <Property Name="MaterialFaktor" Type="float" />
+    <Property Name="Fortschritt" Type="float" />
+    <Property Name="StundeAnsatz" Type="money" />
+    <Property Name="ProjektleiterId" Type="nvarchar" MaxLength="20" />
+    <Property Name="FirmenName" Type="nvarchar" MaxLength="50" />
+    <Property Name="FirmaZusatz" Type="nvarchar" MaxLength="50" />
+    <Property Name="Strasse" Type="nvarchar" MaxLength="50" />
+    <Property Name="HausNr" Type="nvarchar" MaxLength="10" />
+    <Property Name="Postfach" Type="nvarchar" MaxLength="50" />
+    <Property Name="PLZ" Type="nvarchar" MaxLength="10" />
+    <Property Name="Ort" Type="nvarchar" MaxLength="50" />
+    <Property Name="Kontakt" Type="nvarchar" MaxLength="50" />
+    <Property Name="Anrede" Type="nvarchar" MaxLength="50" />
+    <Property Name="Frist" Type="nvarchar" MaxLength="50" />
+    <Property Name="Vorname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Rechtsmittel" Type="nvarchar" MaxLength="500" />
+    <Property Name="Belastung" Type="nvarchar" MaxLength="50" />
+    <Property Name="Entlastung" Type="nvarchar" MaxLength="50" />
+    <Property Name="Kostenstelle" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Projektgruppen">
+    <Key>
+      <PropertyRef Name="Nummer" />
+    </Key>
+    <Property Name="Nummer" Type="smallint" Nullable="false" />
+    <Property Name="Beschreibung" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ProjektLohnkategorieZuordnung">
+    <Key>
+      <PropertyRef Name="ProjektId" />
+      <PropertyRef Name="Kuerzel" />
+    </Key>
+    <Property Name="ProjektId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Kuerzel" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Ansatz" Type="money" />
+    <Property Name="ProjektLohnKatKontierung" Type="nvarchar" MaxLength="50" />
+    <Property Name="Aktiv" Type="bit" />
+  </EntityType>
+  <EntityType Name="RapportEintraege">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Datum" Type="datetime" Nullable="false" />
+    <Property Name="MandantId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProjektId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PersId" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Text" Type="nvarchar(max)" />
+    <Property Name="LohnkategorieKuerzel" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TarifkategorieId" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Aufwand" Type="float" Nullable="false" />
+    <Property Name="AnsatzIntern" Type="money" />
+    <Property Name="AnsatzExtern" Type="money" />
+    <Property Name="Zuschlag" Type="float" Nullable="false" />
+    <Property Name="Verrechnet" Type="int" Nullable="false" />
+    <Property Name="ArbeitsRapportNr" Type="int" Nullable="false" />
+    <Property Name="TimeIntervall" Type="nvarchar" MaxLength="250" />
+    <Property Name="ErfName" Type="nchar" MaxLength="30" />
+    <Property Name="ErfDatum" Type="datetime" />
+    <Property Name="MutName" Type="nchar" MaxLength="30" />
+    <Property Name="MutDatum" Type="datetime" />
+    <Property Name="LohnKatKontierung" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="StartStop">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PersId" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ProjektId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LohnkategorieKuerzel" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TarifkategorieId" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="TimeIntervall" Type="nvarchar" MaxLength="255" />
+    <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Datum" Type="date" />
+  </EntityType>
+  <EntityType Name="Tarifkategorien">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Bezeichnung" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Ansaetze_Lohnkategorie">
+    <End Role="Lohnkategorien" Type="Self.Lohnkategorien" Multiplicity="1" />
+    <End Role="Ansaetze" Type="Self.Ansaetze" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lohnkategorien">
+        <PropertyRef Name="Kuerzel" />
+      </Principal>
+      <Dependent Role="Ansaetze">
+        <PropertyRef Name="LohnkategorieKuerzel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ansaetze_Projektgruppe">
+    <End Role="Projektgruppen" Type="Self.Projektgruppen" Multiplicity="1" />
+    <End Role="Ansaetze" Type="Self.Ansaetze" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projektgruppen">
+        <PropertyRef Name="Nummer" />
+      </Principal>
+      <Dependent Role="Ansaetze">
+        <PropertyRef Name="ProjektgruppeNummer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MandantProjektZuordnung_Projekt">
+    <End Role="Projekte" Type="Self.Projekte" Multiplicity="1" />
+    <End Role="MandantProjektZuordnung" Type="Self.MandantProjektZuordnung" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projekte">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MandantProjektZuordnung">
+        <PropertyRef Name="ProjektId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MitarbeiterProjektZuordnung_Personal">
+    <End Role="Personal" Type="Self.Personal" Multiplicity="1" />
+    <End Role="MitarbeiterProjektZuordnung" Type="Self.MitarbeiterProjektZuordnung" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personal">
+        <PropertyRef Name="PersId" />
+      </Principal>
+      <Dependent Role="MitarbeiterProjektZuordnung">
+        <PropertyRef Name="PersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MitarbeiterProjektZuordnung_Projekt">
+    <End Role="Projekte" Type="Self.Projekte" Multiplicity="1" />
+    <End Role="MitarbeiterProjektZuordnung" Type="Self.MitarbeiterProjektZuordnung" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projekte">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MitarbeiterProjektZuordnung">
+        <PropertyRef Name="ProjektId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Personal_Lohnkategorie">
+    <End Role="Lohnkategorien" Type="Self.Lohnkategorien" Multiplicity="0..1" />
+    <End Role="Personal" Type="Self.Personal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lohnkategorien">
+        <PropertyRef Name="Kuerzel" />
+      </Principal>
+      <Dependent Role="Personal">
+        <PropertyRef Name="LohnkategorieKuerzel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Projekte_Personal">
+    <End Role="Personal" Type="Self.Personal" Multiplicity="0..1" />
+    <End Role="Projekte" Type="Self.Projekte" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personal">
+        <PropertyRef Name="PersId" />
+      </Principal>
+      <Dependent Role="Projekte">
+        <PropertyRef Name="ProjektleiterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Projekte_Projektgruppe">
+    <End Role="Projektgruppen" Type="Self.Projektgruppen" Multiplicity="0..1" />
+    <End Role="Projekte" Type="Self.Projekte" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projektgruppen">
+        <PropertyRef Name="Nummer" />
+      </Principal>
+      <Dependent Role="Projekte">
+        <PropertyRef Name="ProjektgruppeNummer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjektLohnkategorieZuordnung_Lohnkaztegorie">
+    <End Role="Lohnkategorien" Type="Self.Lohnkategorien" Multiplicity="1" />
+    <End Role="ProjektLohnkategorieZuordnung" Type="Self.ProjektLohnkategorieZuordnung" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lohnkategorien">
+        <PropertyRef Name="Kuerzel" />
+      </Principal>
+      <Dependent Role="ProjektLohnkategorieZuordnung">
+        <PropertyRef Name="Kuerzel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjektLohnkategorieZuordnung_Projekt">
+    <End Role="Projekte" Type="Self.Projekte" Multiplicity="1" />
+    <End Role="ProjektLohnkategorieZuordnung" Type="Self.ProjektLohnkategorieZuordnung" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projekte">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjektLohnkategorieZuordnung">
+        <PropertyRef Name="ProjektId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RapportEintraege_Lohnkategorie">
+    <End Role="Lohnkategorien" Type="Self.Lohnkategorien" Multiplicity="1" />
+    <End Role="RapportEintraege" Type="Self.RapportEintraege" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lohnkategorien">
+        <PropertyRef Name="Kuerzel" />
+      </Principal>
+      <Dependent Role="RapportEintraege">
+        <PropertyRef Name="LohnkategorieKuerzel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RapportEintraege_Personal">
+    <End Role="Personal" Type="Self.Personal" Multiplicity="1" />
+    <End Role="RapportEintraege" Type="Self.RapportEintraege" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personal">
+        <PropertyRef Name="PersId" />
+      </Principal>
+      <Dependent Role="RapportEintraege">
+        <PropertyRef Name="PersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RapportEintraege_Projekte">
+    <End Role="Projekte" Type="Self.Projekte" Multiplicity="1" />
+    <End Role="RapportEintraege" Type="Self.RapportEintraege" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projekte">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RapportEintraege">
+        <PropertyRef Name="ProjektId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RapportEintraege_Tarifkategorie">
+    <End Role="Tarifkategorien" Type="Self.Tarifkategorien" Multiplicity="1" />
+    <End Role="RapportEintraege" Type="Self.RapportEintraege" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tarifkategorien">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RapportEintraege">
+        <PropertyRef Name="TarifkategorieId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StartStop_Lohnkategorie">
+    <End Role="Lohnkategorien" Type="Self.Lohnkategorien" Multiplicity="1" />
+    <End Role="StartStop" Type="Self.StartStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lohnkategorien">
+        <PropertyRef Name="Kuerzel" />
+      </Principal>
+      <Dependent Role="StartStop">
+        <PropertyRef Name="LohnkategorieKuerzel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StartStop_Personal">
+    <End Role="Personal" Type="Self.Personal" Multiplicity="1" />
+    <End Role="StartStop" Type="Self.StartStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personal">
+        <PropertyRef Name="PersId" />
+      </Principal>
+      <Dependent Role="StartStop">
+        <PropertyRef Name="PersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StartStop_Projekt">
+    <End Role="Projekte" Type="Self.Projekte" Multiplicity="1" />
+    <End Role="StartStop" Type="Self.StartStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projekte">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StartStop">
+        <PropertyRef Name="ProjektId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StartStop_Tarifkategorie">
+    <End Role="Tarifkategorien" Type="Self.Tarifkategorien" Multiplicity="1" />
+    <End Role="StartStop" Type="Self.StartStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tarifkategorien">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StartStop">
+        <PropertyRef Name="TarifkategorieId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DialogTimeModelStoreContainer">
+    <EntitySet Name="Ansaetze" EntityType="Self.Ansaetze" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Lohnkategorien" EntityType="Self.Lohnkategorien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MandantProjektZuordnung" EntityType="Self.MandantProjektZuordnung" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MitarbeiterProjektZuordnung" EntityType="Self.MitarbeiterProjektZuordnung" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Personal" EntityType="Self.Personal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Projekte" EntityType="Self.Projekte" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Projektgruppen" EntityType="Self.Projektgruppen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjektLohnkategorieZuordnung" EntityType="Self.ProjektLohnkategorieZuordnung" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RapportEintraege" EntityType="Self.RapportEintraege" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StartStop" EntityType="Self.StartStop" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tarifkategorien" EntityType="Self.Tarifkategorien" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Ansaetze_Lohnkategorie" Association="Self.FK_Ansaetze_Lohnkategorie">
+      <End Role="Lohnkategorien" EntitySet="Lohnkategorien" />
+      <End Role="Ansaetze" EntitySet="Ansaetze" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ansaetze_Projektgruppe" Association="Self.FK_Ansaetze_Projektgruppe">
+      <End Role="Projektgruppen" EntitySet="Projektgruppen" />
+      <End Role="Ansaetze" EntitySet="Ansaetze" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MandantProjektZuordnung_Projekt" Association="Self.FK_MandantProjektZuordnung_Projekt">
+      <End Role="Projekte" EntitySet="Projekte" />
+      <End Role="MandantProjektZuordnung" EntitySet="MandantProjektZuordnung" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MitarbeiterProjektZuordnung_Personal" Association="Self.FK_MitarbeiterProjektZuordnung_Personal">
+      <End Role="Personal" EntitySet="Personal" />
+      <End Role="MitarbeiterProjektZuordnung" EntitySet="MitarbeiterProjektZuordnung" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MitarbeiterProjektZuordnung_Projekt" Association="Self.FK_MitarbeiterProjektZuordnung_Projekt">
+      <End Role="Projekte" EntitySet="Projekte" />
+      <End Role="MitarbeiterProjektZuordnung" EntitySet="MitarbeiterProjektZuordnung" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Personal_Lohnkategorie" Association="Self.FK_Personal_Lohnkategorie">
+      <End Role="Lohnkategorien" EntitySet="Lohnkategorien" />
+      <End Role="Personal" EntitySet="Personal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Projekte_Personal" Association="Self.FK_Projekte_Personal">
+      <End Role="Personal" EntitySet="Personal" />
+      <End Role="Projekte" EntitySet="Projekte" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Projekte_Projektgruppe" Association="Self.FK_Projekte_Projektgruppe">
+      <End Role="Projektgruppen" EntitySet="Projektgruppen" />
+      <End Role="Projekte" EntitySet="Projekte" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjektLohnkategorieZuordnung_Lohnkaztegorie" Association="Self.FK_ProjektLohnkategorieZuordnung_Lohnkaztegorie">
+      <End Role="Lohnkategorien" EntitySet="Lohnkategorien" />
+      <End Role="ProjektLohnkategorieZuordnung" EntitySet="ProjektLohnkategorieZuordnung" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjektLohnkategorieZuordnung_Projekt" Association="Self.FK_ProjektLohnkategorieZuordnung_Projekt">
+      <End Role="Projekte" EntitySet="Projekte" />
+      <End Role="ProjektLohnkategorieZuordnung" EntitySet="ProjektLohnkategorieZuordnung" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RapportEintraege_Lohnkategorie" Association="Self.FK_RapportEintraege_Lohnkategorie">
+      <End Role="Lohnkategorien" EntitySet="Lohnkategorien" />
+      <End Role="RapportEintraege" EntitySet="RapportEintraege" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RapportEintraege_Personal" Association="Self.FK_RapportEintraege_Personal">
+      <End Role="Personal" EntitySet="Personal" />
+      <End Role="RapportEintraege" EntitySet="RapportEintraege" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RapportEintraege_Projekte" Association="Self.FK_RapportEintraege_Projekte">
+      <End Role="Projekte" EntitySet="Projekte" />
+      <End Role="RapportEintraege" EntitySet="RapportEintraege" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RapportEintraege_Tarifkategorie" Association="Self.FK_RapportEintraege_Tarifkategorie">
+      <End Role="Tarifkategorien" EntitySet="Tarifkategorien" />
+      <End Role="RapportEintraege" EntitySet="RapportEintraege" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StartStop_Lohnkategorie" Association="Self.FK_StartStop_Lohnkategorie">
+      <End Role="Lohnkategorien" EntitySet="Lohnkategorien" />
+      <End Role="StartStop" EntitySet="StartStop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StartStop_Personal" Association="Self.FK_StartStop_Personal">
+      <End Role="Personal" EntitySet="Personal" />
+      <End Role="StartStop" EntitySet="StartStop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StartStop_Projekt" Association="Self.FK_StartStop_Projekt">
+      <End Role="Projekte" EntitySet="Projekte" />
+      <End Role="StartStop" EntitySet="StartStop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StartStop_Tarifkategorie" Association="Self.FK_StartStop_Tarifkategorie">
+      <End Role="Tarifkategorien" EntitySet="Tarifkategorien" />
+      <End Role="StartStop" EntitySet="StartStop" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

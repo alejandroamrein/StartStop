@@ -1,0 +1,102 @@
+<ion-header>
+    <ion-navbar>
+        <button menuToggle ion-button icon-only>
+            <ion-icon name='menu'></ion-icon>
+        </button>
+        <ion-title>
+            <ion-icon name="person"></ion-icon> {{username}}
+            <div style='float:right'>
+                <ion-icon name="refresh" (click)="refresh()"></ion-icon>
+            </div>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="home" padding has-header>
+
+    <ion-list>
+        <ion-item>
+            <ion-label>Projekt</ion-label>
+            <ion-select [(ngModel)]="projekt" multiple="false"
+                        (ionChange)="projektChanged()"
+                        [disabled]="state==='started' || state==='paused'">
+                <ion-option *ngFor="let p of projekte" [value]="p.Value">{{p.Text}}</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Lohnkategorie</ion-label>
+            <ion-select [(ngModel)]="lohnKategorie" multiple="false"
+                        [disabled]="state==='started' || state==='paused'">
+                <ion-option *ngFor="let p of lohnKategorien" [value]="p.Value">{{p.Text}}</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Tarifkategorie</ion-label>
+            <ion-select [(ngModel)]="tarifKategorie" multiple="false"
+                        [disabled]="state==='started' || state==='paused'">
+                <ion-option *ngFor="let p of tarifKategorien" [value]="p.Value">{{p.Text}}</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-input [(ngModel)]="text" type="text" placeholder="Text..."
+                       [disabled]="state==='started' || state==='paused'"></ion-input>
+        </ion-item>
+    </ion-list>
+    <div [ngSwitch]="state">
+        <div class="row" *ngSwitchCase="'stopped'">
+            <div class="col" style="text-align:center">
+                <button ion-button large [style.backgroundColor]="blue" (click)="history()">
+                    <ion-icon name="information"></ion-icon>
+                </button>
+                <button ion-button large color="secondary" (click)="start()" title="Laufende Zeiterfassung starten">
+                    <ion-icon name="play"></ion-icon>
+                </button>
+                <button ion-button medium color="secondary" (click)="startEx()" title="Laufende Zeiterfassung mit manueller Zeitangabe starten">
+                    <ion-icon name="play"></ion-icon>
+                </button>
+            </div>
+        </div>
+        <div class="row" *ngSwitchCase="'started'">
+            <div class="col" style="text-align:center">
+                <button ion-button large color="light" (click)="pause()" title="Laufende Zeiterfassung anhalten">
+                    <ion-icon name="pause"></ion-icon>
+                </button>
+                <button ion-button large color="danger" (click)="stop()" title="Laufende Zeiterfassung jetzt stoppen">
+                    <ion-icon name="square"></ion-icon>
+                </button>
+                <button ion-button medium color="danger" (click)="stopEx()" title="Laufende Zeiterfassung mit manueller Zeitangabe stoppen">
+                    <ion-icon name="square"></ion-icon>
+                </button>
+                <button ion-button medium color="danger" (click)="cancel()" title="Laufende Zeiterfassung stornieren">
+                    <ion-icon name="close"></ion-icon>
+                </button>
+            </div>
+        </div>
+        <div class="row" *ngSwitchCase="'paused'">
+            <div class="col" style="text-align:center">
+                <button ion-button large color="light" (click)="resume()" title="Laufende Zeiterfassung fortsetzen">
+                    <ion-icon name="skip-forward"></ion-icon>
+                </button>
+                <button ion-button large color="danger" (click)="stop()" title="Laufende Zeiterfassung jetzt stoppen">
+                    <ion-icon name="square"></ion-icon>
+                </button>
+                <button ion-button medium color="danger" (click)="stopEx()" title="Laufende Zeiterfassung mit manueller Zeitangabe stoppen">
+                    <ion-icon name="square"></ion-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+    <ion-card inset *ngIf="state==='started' || state==='paused'" padding>
+        <h2><ion-icon name="clock" item-right></ion-icon> {{ellapsed}}</h2>
+    </ion-card>
+    <ion-card *ngIf="errorMessage!=null" padding>
+        <h2 style="color:red">{{errorMessage}}</h2>
+    </ion-card>
+    <ion-card *ngIf="infoMessage!=null" padding>
+        <h2 style="color:blue">{{infoMessage}}</h2>
+        <h3 style="color:gray">{{infoMessage1}}</h3>
+        <h3 style="color:gray">{{infoMessage2}}</h3>
+        <h3 style="color:gray">{{infoMessage3}}</h3>
+    </ion-card>
+
+</ion-content>

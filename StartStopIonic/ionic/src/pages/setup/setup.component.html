@@ -1,0 +1,20 @@
+﻿<ion-header>
+    <ion-navbar>
+        <ion-title>EINSTELLUNGEN</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <div padding></div>
+    <div padding></div>
+    <form [formGroup]="setupForm" (ngSubmit)="submit()">
+        <ion-list>
+            <ion-item>
+                <ion-label fixed>URL</ion-label>
+                <ion-input [formControl]="setupForm.controls['url']" type="text" [(ngModel)]="url"></ion-input>
+            </ion-item>
+        </ion-list>
+        <button ion-button full [disabled]="!setupForm.valid">Bestätigen</button>
+    </form>
+    <div padding></div>
+</ion-content>

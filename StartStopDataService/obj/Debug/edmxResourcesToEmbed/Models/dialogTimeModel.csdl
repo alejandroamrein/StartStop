@@ -1,0 +1,498 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DialogTimeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ProjektgruppeLohnkategorieAnsatz">
+    <Key>
+      <PropertyRef Name="ProjektgruppeNummer" />
+      <PropertyRef Name="LohnkategorieKuerzel" />
+    </Key>
+    <Property Name="ProjektgruppeNummer" Type="Int16" Nullable="false" />
+    <Property Name="LohnkategorieKuerzel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Ansatz" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="Lohnkategorien" Relationship="Self.FK_Ansaetze_Lohnkategorie" FromRole="Ansaetze" ToRole="Lohnkategorien" />
+    <NavigationProperty Name="Projektgruppen" Relationship="DialogTimeModel.FK_Ansaetze_Projektgruppe" FromRole="Ansaetz" ToRole="Projektgruppen" />
+  </EntityType>
+  <EntityType Name="Lohnkategorie">
+    <Key>
+      <PropertyRef Name="Kuerzel" />
+    </Key>
+    <Property Name="Kuerzel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Beschreibung" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Standardansatz" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Lohnart" Type="Int32" Nullable="false" />
+    <Property Name="LohnKatKontierung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Ansaetze" Relationship="Self.FK_Ansaetze_Lohnkategorie" FromRole="Lohnkategorien" ToRole="Ansaetze" />
+    <NavigationProperty Name="Personal" Relationship="Self.FK_Personal_Lohnkategorie" FromRole="Lohnkategorien" ToRole="Personal" />
+    <NavigationProperty Name="ProjektLohnkategorieZuordnung" Relationship="Self.FK_ProjektLohnkategorieZuordnung_Lohnkaztegorie" FromRole="Lohnkategorien" ToRole="ProjektLohnkategorieZuordnung" />
+    <NavigationProperty Name="RapportEintraege" Relationship="Self.FK_RapportEintraege_Lohnkategorie" FromRole="Lohnkategorien" ToRole="RapportEintraege" />
+    <NavigationProperty Name="StartStop" Relationship="DialogTimeModel.FK_StartStop_Lohnkategorie" FromRole="Lohnkategorie" ToRole="StartStop" />
+  </EntityType>
+  <EntityType Name="MandantProjektZuordnung">
+    <Key>
+      <PropertyRef Name="MandantId" />
+      <PropertyRef Name="ProjektId" />
+    </Key>
+    <Property Name="MandantId" Type="Guid" Nullable="false" />
+    <Property Name="ProjektId" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Projekte" Relationship="Self.FK_MandantProjektZuordnung_Projekt" FromRole="MandantProjektZuordnung" ToRole="Projekte" />
+  </EntityType>
+  <EntityType Name="Mitarbeiter">
+    <Key>
+      <PropertyRef Name="PersId" />
+    </Key>
+    <Property Name="PersId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Passwort" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AHV" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Vorname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Nachname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Titel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmailName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Strasse" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Ort" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Postleitzahl" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Land" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TelefonPrivat" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="TelefonBeruflich" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Natel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Geburtsdatum" Type="DateTime" Precision="3" />
+    <Property Name="EhepartnerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NotfallkontaktPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NotfallkontaktTelefon" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Eintritt" Type="DateTime" Precision="3" />
+    <Property Name="Austritt" Type="DateTime" Precision="3" />
+    <Property Name="AnsatzNK" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Ferien" Type="Double" />
+    <Property Name="StdLohnAnsatz" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="LohnkategorieKuerzel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Rechte" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ArbeitProzent" Type="Double" Nullable="false" />
+    <Property Name="KalenderId" Type="Int32" Nullable="false" />
+    <Property Name="StartNormalarbeitszeit" Type="Double" />
+    <Property Name="Intervall" Type="Int32" />
+    <Property Name="Abteilung" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Funktion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Gleitzeitberechtigt" Type="Boolean" />
+    <Property Name="UseTagessollzeiten" Type="Boolean" />
+    <Property Name="MoSollzeit" Type="Int32" />
+    <Property Name="DiSollzeit" Type="Int32" />
+    <Property Name="MiSollzeit" Type="Int32" />
+    <Property Name="DoSollzeit" Type="Int32" />
+    <Property Name="FrSollzeit" Type="Int32" />
+    <Property Name="SaSollzeit" Type="Int32" />
+    <Property Name="SoSollzeit" Type="Int32" />
+    <Property Name="LastLogin" Type="DateTime" Precision="3" />
+    <Property Name="Angemeldet" Type="Boolean" />
+    <Property Name="ExchangeID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OutlookKontakte" Type="Boolean" />
+    <Property Name="OutlookKalender" Type="Boolean" />
+    <Property Name="Lehrlingsbetreuer" Type="Boolean" />
+    <Property Name="Kontogruppe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Konto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Kore" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Lohnkategorien" Relationship="Self.FK_Personal_Lohnkategorie" FromRole="Personal" ToRole="Lohnkategorien" />
+    <NavigationProperty Name="Projekte" Relationship="Self.FK_Projekte_Personal" FromRole="Personal" ToRole="Projekte" />
+    <NavigationProperty Name="RapportEintraege" Relationship="Self.FK_RapportEintraege_Personal" FromRole="Personal" ToRole="RapportEintraege" />
+    <NavigationProperty Name="MitarbeiterProjekte" Relationship="Self.MitarbeiterProjektZuordnung" FromRole="Personal" ToRole="Projekte" />
+    <Property Name="IRKonto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IRKore" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="StartStop" Relationship="DialogTimeModel.FK_StartStop_Personal" FromRole="Mitarbeiter" ToRole="StartStop" />
+  </EntityType>
+  <EntityType Name="Projekt">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="ExternId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Bezeichnung" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AuftragNummer" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BudgetMaterial" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="StartDatum" Type="DateTime" Precision="3" />
+    <Property Name="EndDatum" Type="DateTime" Precision="3" />
+    <Property Name="ProjektgruppeNummer" Type="Int16" />
+    <Property Name="Aktiv" Type="Boolean" />
+    <Property Name="BudgetLeistungenFr" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="BudgetLeistungenStd" Type="Double" />
+    <Property Name="BudgetSpesen" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="SpesenFaktor" Type="Double" />
+    <Property Name="MaterialFaktor" Type="Double" />
+    <Property Name="Fortschritt" Type="Double" />
+    <Property Name="StundeAnsatz" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ProjektleiterId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="FirmenName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FirmaZusatz" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Strasse" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HausNr" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Postfach" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PLZ" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Ort" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Kontakt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Anrede" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Frist" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Vorname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Rechtsmittel" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Belastung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Entlastung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MandantProjektZuordnung" Relationship="Self.FK_MandantProjektZuordnung_Projekt" FromRole="Projekte" ToRole="MandantProjektZuordnung" />
+    <NavigationProperty Name="Personal" Relationship="Self.FK_Projekte_Personal" FromRole="Projekte" ToRole="Personal" />
+    <NavigationProperty Name="ProjektLohnkategorieZuordnung" Relationship="Self.FK_ProjektLohnkategorieZuordnung_Projekt" FromRole="Projekte" ToRole="ProjektLohnkategorieZuordnung" />
+    <NavigationProperty Name="RapportEintraege" Relationship="Self.FK_RapportEintraege_Projekte" FromRole="Projekte" ToRole="RapportEintraege" />
+    <NavigationProperty Name="Personal1" Relationship="Self.MitarbeiterProjektZuordnung" FromRole="Projekte" ToRole="Personal" />
+    <NavigationProperty Name="Projektgruppen" Relationship="DialogTimeModel.FK_Projekte_Projektgruppe" FromRole="Projekt" ToRole="Projektgruppen" />
+    <Property Name="Kostenstelle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="StartStop" Relationship="DialogTimeModel.FK_StartStop_Projekt" FromRole="Projekt" ToRole="StartStop" />
+  </EntityType>
+  <EntityType Name="ProjektLohnkategorieZuordnung">
+    <Key>
+      <PropertyRef Name="ProjektId" />
+      <PropertyRef Name="Kuerzel" />
+    </Key>
+    <Property Name="ProjektId" Type="Guid" Nullable="false" />
+    <Property Name="Kuerzel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Ansatz" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ProjektLohnKatKontierung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Lohnkategorien" Relationship="Self.FK_ProjektLohnkategorieZuordnung_Lohnkaztegorie" FromRole="ProjektLohnkategorieZuordnung" ToRole="Lohnkategorien" />
+    <NavigationProperty Name="Projekte" Relationship="Self.FK_ProjektLohnkategorieZuordnung_Projekt" FromRole="ProjektLohnkategorieZuordnung" ToRole="Projekte" />
+    <Property Name="Aktiv" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="RapportEintrag">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Datum" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MandantId" Type="Guid" Nullable="false" />
+    <Property Name="ProjektId" Type="Guid" Nullable="false" />
+    <Property Name="PersId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LohnkategorieKuerzel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TarifkategorieId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Aufwand" Type="Double" Nullable="false" />
+    <Property Name="AnsatzIntern" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="AnsatzExtern" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Zuschlag" Type="Double" Nullable="false" />
+    <Property Name="Verrechnet" Type="Int32" Nullable="false" />
+    <Property Name="ArbeitsRapportNr" Type="Int32" Nullable="false" />
+    <Property Name="TimeIntervall" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ErfName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="ErfDatum" Type="DateTime" Precision="3" />
+    <Property Name="MutName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="MutDatum" Type="DateTime" Precision="3" />
+    <Property Name="LohnKatKontierung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Lohnkategorien" Relationship="Self.FK_RapportEintraege_Lohnkategorie" FromRole="RapportEintraege" ToRole="Lohnkategorien" />
+    <NavigationProperty Name="Personal" Relationship="Self.FK_RapportEintraege_Personal" FromRole="RapportEintraege" ToRole="Personal" />
+    <NavigationProperty Name="Projekte" Relationship="Self.FK_RapportEintraege_Projekte" FromRole="RapportEintraege" ToRole="Projekte" />
+    <NavigationProperty Name="Tarifkategorien" Relationship="Self.FK_RapportEintraege_Tarifkategorie" FromRole="RapportEintraege" ToRole="Tarifkategorien" />
+  </EntityType>
+  <EntityType Name="StartStop">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PersId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProjektId" Type="Guid" Nullable="false" />
+    <Property Name="LohnkategorieKuerzel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TarifkategorieId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TimeIntervall" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Datum" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Lohnkategorie" Relationship="DialogTimeModel.FK_StartStop_Lohnkategorie" FromRole="StartStop" ToRole="Lohnkategorie" />
+    <NavigationProperty Name="Mitarbeiter" Relationship="DialogTimeModel.FK_StartStop_Personal" FromRole="StartStop" ToRole="Mitarbeiter" />
+    <NavigationProperty Name="Projekt" Relationship="DialogTimeModel.FK_StartStop_Projekt" FromRole="StartStop" ToRole="Projekt" />
+    <NavigationProperty Name="Tarifkategorie" Relationship="DialogTimeModel.FK_StartStop_Tarifkategorie" FromRole="StartStop" ToRole="Tarifkategorie" />
+  </EntityType>
+  <EntityType Name="Tarifkategorie">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Bezeichnung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="RapportEintraege" Relationship="Self.FK_RapportEintraege_Tarifkategorie" FromRole="Tarifkategorien" ToRole="RapportEintraege" />
+    <NavigationProperty Name="StartStop" Relationship="DialogTimeModel.FK_StartStop_Tarifkategorie" FromRole="Tarifkategorie" ToRole="StartStop" />
+  </EntityType>
+  <Association Name="FK_Ansaetze_Lohnkategorie">
+    <End Role="Lohnkategorien" Type="DialogTimeModel.Lohnkategorie" Multiplicity="1" />
+    <End Role="Ansaetze" Type="DialogTimeModel.ProjektgruppeLohnkategorieAnsatz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lohnkategorien">
+        <PropertyRef Name="Kuerzel" />
+      </Principal>
+      <Dependent Role="Ansaetze">
+        <PropertyRef Name="LohnkategorieKuerzel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Personal_Lohnkategorie">
+    <End Role="Lohnkategorien" Type="DialogTimeModel.Lohnkategorie" Multiplicity="0..1" />
+    <End Role="Personal" Type="DialogTimeModel.Mitarbeiter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lohnkategorien">
+        <PropertyRef Name="Kuerzel" />
+      </Principal>
+      <Dependent Role="Personal">
+        <PropertyRef Name="LohnkategorieKuerzel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjektLohnkategorieZuordnung_Lohnkaztegorie">
+    <End Role="Lohnkategorien" Type="DialogTimeModel.Lohnkategorie" Multiplicity="1" />
+    <End Role="ProjektLohnkategorieZuordnung" Type="Self.ProjektLohnkategorieZuordnung" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lohnkategorien">
+        <PropertyRef Name="Kuerzel" />
+      </Principal>
+      <Dependent Role="ProjektLohnkategorieZuordnung">
+        <PropertyRef Name="Kuerzel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RapportEintraege_Lohnkategorie">
+    <End Role="Lohnkategorien" Type="DialogTimeModel.Lohnkategorie" Multiplicity="1" />
+    <End Role="RapportEintraege" Type="DialogTimeModel.RapportEintrag" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lohnkategorien">
+        <PropertyRef Name="Kuerzel" />
+      </Principal>
+      <Dependent Role="RapportEintraege">
+        <PropertyRef Name="LohnkategorieKuerzel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MandantProjektZuordnung_Projekt">
+    <End Role="Projekte" Type="DialogTimeModel.Projekt" Multiplicity="1" />
+    <End Role="MandantProjektZuordnung" Type="Self.MandantProjektZuordnung" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projekte">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MandantProjektZuordnung">
+        <PropertyRef Name="ProjektId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Projekte_Personal">
+    <End Role="Personal" Type="DialogTimeModel.Mitarbeiter" Multiplicity="0..1" />
+    <End Role="Projekte" Type="DialogTimeModel.Projekt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personal">
+        <PropertyRef Name="PersId" />
+      </Principal>
+      <Dependent Role="Projekte">
+        <PropertyRef Name="ProjektleiterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RapportEintraege_Personal">
+    <End Role="Personal" Type="DialogTimeModel.Mitarbeiter" Multiplicity="1" />
+    <End Role="RapportEintraege" Type="DialogTimeModel.RapportEintrag" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personal">
+        <PropertyRef Name="PersId" />
+      </Principal>
+      <Dependent Role="RapportEintraege">
+        <PropertyRef Name="PersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjektLohnkategorieZuordnung_Projekt">
+    <End Role="Projekte" Type="DialogTimeModel.Projekt" Multiplicity="1" />
+    <End Role="ProjektLohnkategorieZuordnung" Type="Self.ProjektLohnkategorieZuordnung" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projekte">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjektLohnkategorieZuordnung">
+        <PropertyRef Name="ProjektId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RapportEintraege_Projekte">
+    <End Role="Projekte" Type="DialogTimeModel.Projekt" Multiplicity="1" />
+    <End Role="RapportEintraege" Type="DialogTimeModel.RapportEintrag" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projekte">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RapportEintraege">
+        <PropertyRef Name="ProjektId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RapportEintraege_Tarifkategorie">
+    <End Role="Tarifkategorien" Type="DialogTimeModel.Tarifkategorie" Multiplicity="1" />
+    <End Role="RapportEintraege" Type="DialogTimeModel.RapportEintrag" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tarifkategorien">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RapportEintraege">
+        <PropertyRef Name="TarifkategorieId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MitarbeiterProjektZuordnung">
+    <End Role="Personal" Type="DialogTimeModel.Mitarbeiter" Multiplicity="*" />
+    <End Role="Projekte" Type="DialogTimeModel.Projekt" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="dialogTimeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ProjektgruppeLohnkategorieAnsaetze" EntityType="DialogTimeModel.ProjektgruppeLohnkategorieAnsatz" />
+    <EntitySet Name="Lohnkategorien" EntityType="DialogTimeModel.Lohnkategorie" />
+    <EntitySet Name="MandantProjektZuordnungen" EntityType="Self.MandantProjektZuordnung" />
+    <EntitySet Name="Personal" EntityType="DialogTimeModel.Mitarbeiter" />
+    <EntitySet Name="Projekte" EntityType="DialogTimeModel.Projekt" />
+    <EntitySet Name="ProjektLohnkategorieZuordnungen" EntityType="Self.ProjektLohnkategorieZuordnung" />
+    <EntitySet Name="RapportEintraege" EntityType="DialogTimeModel.RapportEintrag" />
+    <EntitySet Name="StartStops" EntityType="Self.StartStop" />
+    <EntitySet Name="Tarifkategorien" EntityType="DialogTimeModel.Tarifkategorie" />
+    <AssociationSet Name="FK_Ansaetze_Lohnkategorie" Association="Self.FK_Ansaetze_Lohnkategorie">
+      <End Role="Lohnkategorien" EntitySet="Lohnkategorien" />
+      <End Role="Ansaetze" EntitySet="ProjektgruppeLohnkategorieAnsaetze" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Personal_Lohnkategorie" Association="Self.FK_Personal_Lohnkategorie">
+      <End Role="Lohnkategorien" EntitySet="Lohnkategorien" />
+      <End Role="Personal" EntitySet="Personal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjektLohnkategorieZuordnung_Lohnkaztegorie" Association="Self.FK_ProjektLohnkategorieZuordnung_Lohnkaztegorie">
+      <End Role="Lohnkategorien" EntitySet="Lohnkategorien" />
+      <End Role="ProjektLohnkategorieZuordnung" EntitySet="ProjektLohnkategorieZuordnungen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RapportEintraege_Lohnkategorie" Association="Self.FK_RapportEintraege_Lohnkategorie">
+      <End Role="Lohnkategorien" EntitySet="Lohnkategorien" />
+      <End Role="RapportEintraege" EntitySet="RapportEintraege" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MandantProjektZuordnung_Projekt" Association="Self.FK_MandantProjektZuordnung_Projekt">
+      <End Role="Projekte" EntitySet="Projekte" />
+      <End Role="MandantProjektZuordnung" EntitySet="MandantProjektZuordnungen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Projekte_Personal" Association="Self.FK_Projekte_Personal">
+      <End Role="Personal" EntitySet="Personal" />
+      <End Role="Projekte" EntitySet="Projekte" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RapportEintraege_Personal" Association="Self.FK_RapportEintraege_Personal">
+      <End Role="Personal" EntitySet="Personal" />
+      <End Role="RapportEintraege" EntitySet="RapportEintraege" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjektLohnkategorieZuordnung_Projekt" Association="Self.FK_ProjektLohnkategorieZuordnung_Projekt">
+      <End Role="Projekte" EntitySet="Projekte" />
+      <End Role="ProjektLohnkategorieZuordnung" EntitySet="ProjektLohnkategorieZuordnungen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RapportEintraege_Projekte" Association="Self.FK_RapportEintraege_Projekte">
+      <End Role="Projekte" EntitySet="Projekte" />
+      <End Role="RapportEintraege" EntitySet="RapportEintraege" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RapportEintraege_Tarifkategorie" Association="Self.FK_RapportEintraege_Tarifkategorie">
+      <End Role="Tarifkategorien" EntitySet="Tarifkategorien" />
+      <End Role="RapportEintraege" EntitySet="RapportEintraege" />
+    </AssociationSet>
+    <AssociationSet Name="MitarbeiterProjektZuordnung" Association="Self.MitarbeiterProjektZuordnung">
+      <End Role="Personal" EntitySet="Personal" />
+      <End Role="Projekte" EntitySet="Projekte" />
+    </AssociationSet>
+    <EntitySet Name="Projektgruppen" EntityType="DialogTimeModel.Projektgruppe" />
+    <AssociationSet Name="FK_Ansaetze_Projektgruppe" Association="DialogTimeModel.FK_Ansaetze_Projektgruppe">
+      <End Role="Projektgruppen" EntitySet="Projektgruppen" />
+      <End Role="Ansaetz" EntitySet="ProjektgruppeLohnkategorieAnsaetze" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Projekte_Projektgruppe" Association="DialogTimeModel.FK_Projekte_Projektgruppe">
+      <End Role="Projektgruppen" EntitySet="Projektgruppen" />
+      <End Role="Projekt" EntitySet="Projekte" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StartStop_Lohnkategorie" Association="DialogTimeModel.FK_StartStop_Lohnkategorie">
+      <End Role="Lohnkategorie" EntitySet="Lohnkategorien" />
+      <End Role="StartStop" EntitySet="StartStops" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StartStop_Personal" Association="DialogTimeModel.FK_StartStop_Personal">
+      <End Role="Mitarbeiter" EntitySet="Personal" />
+      <End Role="StartStop" EntitySet="StartStops" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StartStop_Projekt" Association="DialogTimeModel.FK_StartStop_Projekt">
+      <End Role="Projekt" EntitySet="Projekte" />
+      <End Role="StartStop" EntitySet="StartStops" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StartStop_Tarifkategorie" Association="DialogTimeModel.FK_StartStop_Tarifkategorie">
+      <End Role="Tarifkategorie" EntitySet="Tarifkategorien" />
+      <End Role="StartStop" EntitySet="StartStops" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Projektgruppe">
+    <Key>
+      <PropertyRef Name="Nummer" />
+    </Key>
+    <Property Name="Nummer" Type="Int16" Nullable="false" />
+    <Property Name="Beschreibung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Ansaetze" Relationship="DialogTimeModel.FK_Ansaetze_Projektgruppe" FromRole="Projektgruppen" ToRole="Ansaetz" />
+    <NavigationProperty Name="Projekte" Relationship="DialogTimeModel.FK_Projekte_Projektgruppe" FromRole="Projektgruppen" ToRole="Projekt" />
+  </EntityType>
+  <Association Name="FK_Ansaetze_Projektgruppe">
+    <End Type="DialogTimeModel.Projektgruppe" Role="Projektgruppen" Multiplicity="1" />
+    <End Type="DialogTimeModel.ProjektgruppeLohnkategorieAnsatz" Role="Ansaetz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projektgruppen">
+        <PropertyRef Name="Nummer" />
+      </Principal>
+      <Dependent Role="Ansaetz">
+        <PropertyRef Name="ProjektgruppeNummer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Projekte_Projektgruppe">
+    <End Type="DialogTimeModel.Projektgruppe" Role="Projektgruppen" Multiplicity="0..1" />
+    <End Type="DialogTimeModel.Projekt" Role="Projekt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projektgruppen">
+        <PropertyRef Name="Nummer" />
+      </Principal>
+      <Dependent Role="Projekt">
+        <PropertyRef Name="ProjektgruppeNummer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StartStop_Lohnkategorie">
+    <End Type="DialogTimeModel.Lohnkategorie" Role="Lohnkategorie" Multiplicity="1" />
+    <End Type="DialogTimeModel.StartStop" Role="StartStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lohnkategorie">
+        <PropertyRef Name="Kuerzel" />
+      </Principal>
+      <Dependent Role="StartStop">
+        <PropertyRef Name="LohnkategorieKuerzel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StartStop_Personal">
+    <End Type="DialogTimeModel.Mitarbeiter" Role="Mitarbeiter" Multiplicity="1" />
+    <End Type="DialogTimeModel.StartStop" Role="StartStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mitarbeiter">
+        <PropertyRef Name="PersId" />
+      </Principal>
+      <Dependent Role="StartStop">
+        <PropertyRef Name="PersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StartStop_Projekt">
+    <End Type="DialogTimeModel.Projekt" Role="Projekt" Multiplicity="1" />
+    <End Type="DialogTimeModel.StartStop" Role="StartStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projekt">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StartStop">
+        <PropertyRef Name="ProjektId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StartStop_Tarifkategorie">
+    <End Type="DialogTimeModel.Tarifkategorie" Role="Tarifkategorie" Multiplicity="1" />
+    <End Type="DialogTimeModel.StartStop" Role="StartStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tarifkategorie">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StartStop">
+        <PropertyRef Name="TarifkategorieId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

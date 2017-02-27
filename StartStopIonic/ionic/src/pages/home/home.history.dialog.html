@@ -1,0 +1,24 @@
+﻿<ion-header>
+    <ion-navbar>
+        <ion-title>Letzte Einträge</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding class="sample-modal-page">
+    <ion-list>
+        <ion-item *ngFor="let item of items">
+            <h2>{{item.Datum | date: 'dd.MM.yyyy'}} ::: {{item.TimeIntervall}}</h2>
+            <div><b>{{item.Projekt}}</b></div>
+            <div>{{item.Lohnkategorie}} / {{item.Tarifkategorie}}</div>
+            <i>{{item.Text}}</i>
+		</ion-item>
+    </ion-list>
+    <div>
+        <div class="row">
+            <div class="col" style="text-align:center">
+                <button ion-button medium color="secondary" (click)="dismiss()">
+                    Zurück
+                </button>
+            </div>
+        </div>
+    </div>
+</ion-content>
