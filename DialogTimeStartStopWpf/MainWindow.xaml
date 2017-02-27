@@ -1,0 +1,86 @@
+﻿<Window x:Class="DialogTimeStartStopWpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DialogTimeStartStopWpf"
+        mc:Ignorable="d"
+        Title="{Binding Version}" Height="Auto" Width="600">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="13*"/>
+            <ColumnDefinition Width="13*"/>
+            <ColumnDefinition Width="26*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <!-- 1 -->
+        <TextBlock Grid.Row="1" HorizontalAlignment="Left" Margin="10,5,0,9" TextWrapping="Wrap" Text="Benutzername:" FontSize="16"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Margin="5" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Width="150" FontSize="16" IsEnabled="{Binding IsUsernameEnabled}" />
+        <Button Grid.Row="1" Content="Abmelden" Grid.Column="2" HorizontalAlignment="Right" Margin="0,5,7,5" VerticalAlignment="Stretch" Width="100" FontSize="16" Visibility="{Binding IsAbmeldenVisible}" Command="{Binding AbmeldenCommand}" />
+        <!-- 2 -->
+        <TextBlock Grid.Row="2" HorizontalAlignment="Left" Margin="10,5,0,0" TextWrapping="Wrap" Text="Kennwort:" VerticalAlignment="Center" FontSize="16"/>
+        <PasswordBox Grid.Row="2" Grid.Column="1" x:Name="pwd" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Width="150" FontSize="16" IsEnabled="{Binding IsUsernameEnabled}" PasswordChanged="pwd_PasswordChanged" />
+        <TextBlock Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" Margin="0,5,7,5" TextWrapping="NoWrap" Text="{Binding UserData}" VerticalAlignment="Stretch" />
+        <!-- 3 -->
+        <TextBlock Grid.Row="3" HorizontalAlignment="Left" Margin="10,7,0,7" TextWrapping="Wrap" Text="Projekt:" VerticalAlignment="Center" FontSize="16"/>
+        <ComboBox Grid.Row="3" DisplayMemberPath="Bezeichnung" SelectedValuePath="Id" SelectedValue="{Binding SelectedProjekt}" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5,7" VerticalAlignment="Stretch" Grid.ColumnSpan="2" FontSize="16" ItemsSource="{Binding ProjekteListe}" IsEnabled="{Binding IsCombosEnabled}" />
+        <!-- 4 -->
+        <TextBlock Grid.Row="4" HorizontalAlignment="Left" Margin="10,7,0,7" TextWrapping="Wrap" Text="Lohnkategorie:" VerticalAlignment="Center" FontSize="16"/>
+        <ComboBox Grid.Row="4" DisplayMemberPath="Beschreibung" SelectedValuePath="Kuerzel" SelectedValue="{Binding SelectedLohnkategorie}" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5,7" VerticalAlignment="Stretch" Grid.ColumnSpan="2" FontSize="16" ItemsSource="{Binding LohnkategorienListe}" IsEnabled="{Binding IsCombosEnabled}" />
+        <!-- 5 -->
+        <TextBlock Grid.Row="5" HorizontalAlignment="Left" Margin="10,7,0,7" TextWrapping="Wrap" Text="Tarifkategorie:" VerticalAlignment="Center" FontSize="16"/>
+        <ComboBox Grid.Row="5" DisplayMemberPath="Bezeichnung" SelectedValuePath="Id" SelectedValue="{Binding SelectedTarifkategorie}" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5,7" VerticalAlignment="Stretch" Grid.ColumnSpan="2" FontSize="16" ItemsSource="{Binding TarifkategorienListe}" IsEnabled="{Binding IsCombosEnabled}" />
+        <!-- 6 -->
+        <TextBox Grid.Row="6" HorizontalAlignment="Left" Height="23" Margin="10,7,0,7" TextWrapping="NoWrap" Text="Tätigkeit:" VerticalAlignment="Center" FontSize="16" />
+        <TextBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Margin="5" TextWrapping="Wrap" Text="{Binding Text}" VerticalAlignment="Stretch" FontSize="16" IsEnabled="{Binding IsCombosEnabled}" />
+        <!-- 7 -->
+        <TextBlock Grid.Row="7" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" Margin="10" TextWrapping="NoWrap" Text="{Binding FeedbackText}" VerticalAlignment="Stretch" TextAlignment="Center" FontSize="18" Foreground="{Binding FeedbackColor}" />
+        <!-- 8 -->
+        <Button Grid.Row="8" Content="Start" HorizontalAlignment="Stretch" Margin="10,9.5,10,10.5" VerticalAlignment="Stretch" 
+                Background="LimeGreen" FontSize="20" Grid.ColumnSpan="3" Command="{Binding StartCommand}" SizeChanged="Button_SizeChanged"
+                Visibility="{Binding StartCmdVisibility}" Name="startButton" />
+        <Button Grid.Row="8" HorizontalAlignment="Right" Margin="10,9.5,10,10.5" VerticalAlignment="Bottom" 
+                Width="{Binding StartExWidth}" Height="{Binding StartExHeight}"
+                FontSize="20" Grid.ColumnSpan="3" Command="{Binding StartExCommand}"
+                Visibility="{Binding StartCmdVisibility}">
+            <Button.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Offset="0" Color="DarkGreen" />
+                    <GradientStop Offset="1" Color="LimeGreen" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="8" Content="Pause" HorizontalAlignment="Stretch" Margin="10,9.5,9.5,10.5" VerticalAlignment="Stretch" 
+                Background="#FFC9C9C9" FontSize="20" Command="{Binding PauseCommand}" 
+                Visibility="{Binding PauseCmdVisibility}" Grid.ColumnSpan="2" />
+        <Button Grid.Row="8" Content="Resume" HorizontalAlignment="Stretch" Margin="10,9.5,9.5,10.5" VerticalAlignment="Stretch" 
+                Background="#FFC9C9C9" FontSize="20" Command="{Binding ResumeCommand}" 
+                Visibility="{Binding ResumeCmdVisibility}" Grid.ColumnSpan="2" />
+        <Button Name="stopButton" Grid.Row="8" Content="Stopp" 
+                HorizontalAlignment="Stretch" Margin="10.5,9.5,10,10.5" VerticalAlignment="Stretch" 
+                Background="#FFFF0505" FontSize="20" Command="{Binding StopCommand}" Grid.Column="2" 
+                Visibility="{Binding StopCmdVisibility}" />
+        <Button Grid.Row="8" HorizontalAlignment="Right" Margin="10,9.5,10,10.5" VerticalAlignment="Bottom" 
+                Width="{Binding StopExWidth}" Height="{Binding StopExHeight}"
+                FontSize="20" Grid.Column="2" Command="{Binding StopExCommand}"
+                Visibility="{Binding StopCmdVisibility}">
+            <Button.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Offset="0" Color="DarkRed" />
+                    <GradientStop Offset="1" Color="#FFFF0505" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+    </Grid>
+</Window>

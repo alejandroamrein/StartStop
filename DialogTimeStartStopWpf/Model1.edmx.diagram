@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="410529ea12324cfe8f50f702e293986f" Name="Diagram1" ZoomLevel="52">
+        <EntityTypeShape EntityType="DialogTIMEModel.Lohnkategorien" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DialogTIMEModel.Personal" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DialogTIMEModel.Projekte" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DialogTIMEModel.ProjektLohnkategorieZuordnung" Width="1.5" PointX="7.5" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DialogTIMEModel.Tarifkategorien" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="DialogTIMEModel.FK_Personal_Lohnkategorie" ManuallyRouted="false" />
+        <AssociationConnector Association="DialogTIMEModel.FK_ProjektLohnkategorieZuordnung_Lohnkaztegorie" ManuallyRouted="false" />
+        <AssociationConnector Association="DialogTIMEModel.FK_Projekte_Personal" ManuallyRouted="false" />
+        <AssociationConnector Association="DialogTIMEModel.FK_ProjektLohnkategorieZuordnung_Projekt" ManuallyRouted="false" />
+        <AssociationConnector Association="DialogTIMEModel.MitarbeiterProjektZuordnung" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DialogTIMEModel.StartStop" Width="1.5" PointX="10.375" PointY="3.875" />
+        <EntityTypeShape EntityType="DialogTIMEModel.RapportEintraege" Width="1.5" PointX="13" PointY="4" />
+        <AssociationConnector Association="DialogTIMEModel.FK_RapportEintraege_Lohnkategorie" />
+        <AssociationConnector Association="DialogTIMEModel.FK_RapportEintraege_Personal" />
+        <AssociationConnector Association="DialogTIMEModel.FK_RapportEintraege_Projekte" />
+        <AssociationConnector Association="DialogTIMEModel.FK_RapportEintraege_Tarifkategorie" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
